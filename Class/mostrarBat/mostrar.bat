@@ -1,4 +1,5 @@
 @echo off
 rem sintaxis:
-rem FOR ejecutar un archivo bat para cada archivo FOR %%I IN (*.bat) DO mostrar.bat  %%I
+rem recibe por parametro una ruta a un archivo
+rem lo muestra con 'more'
 more %1
