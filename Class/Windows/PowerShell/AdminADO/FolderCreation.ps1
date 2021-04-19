@@ -1,4 +1,4 @@
-$folder = "Datos"
+$folder = "Usuarios"
 cd  C:\Users\Administrador\Documents | Out-Null
 Get-Volume
 Read-Host "Pulse intro para ver Información de los volúmenes"
