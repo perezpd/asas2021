@@ -2,16 +2,16 @@
 #valor inicial da opcion
 clear
 opcion=a
-while [ $opcion != "s" -a $opcion != "S" ]
+while [ "$opcion" != "s" -a "$opcion" != "S" ]
 do
-  if [ $opcion != 'a' ]
+  if [ "$opcion" != 'a' ]
   then
+    echo
     read -p "Pulsa una tecla para continuar..."
+    clear
   fi
-
-  echo 
   echo --------------------------------------------------------
-  echo "--------------------SYSTEM INFO-------------------------"
+  echo "-------------- SYSTEM INFO by perezpd -----------------"
   echo "Esta es la herramienta información de config del equipo"
   echo --------------------------------------------------------
   echo "Opciones disponibles:"
@@ -22,6 +22,10 @@ do
   echo
 # leemos la opcion por pantalla
 read -p "Indica la opción elegida:" opcion
+# TEST si opcion NO se mete vacia
+# devuelve true cuando opcion no está vacia
+if [ -n "$opcion" ]
+then
 case "$opcion" in
   e|E)
     clear
@@ -56,7 +60,7 @@ case "$opcion" in
   *)
     echo
     echo "xxxxxxxx   Opción incorrecta!!!! xxxxxxxx"
-    opcion=a 
     ;;
 esac # fin del case
+fi #fin del if de comprobación de opción vacia
 done #fin del while
