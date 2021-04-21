@@ -1,8 +1,14 @@
 #!/bin/bash
 #valor inicial da opcion
+clear
 opcion=a
 while [ $opcion != "s" -a $opcion != "S" ]
 do
+  if [ $opcion != 'a' ]
+  then
+    read -p "Pulsa una tecla para continuar..."
+  fi
+
   echo 
   echo --------------------------------------------------------
   echo "--------------------SYSTEM INFO-------------------------"
@@ -18,12 +24,21 @@ do
 read -p "Indica la opción elegida:" opcion
 case "$opcion" in
   e|E)
+    clear
+    echo Opción elegida: E - Consultar nombre del equipo
+    echo --------------------------------------------------------
     echo "Nombre del equipo: $(hostname)"
     ;;
   r|R)
+    clear
+    echo Opción elegida: R - Consultar configuración de red
+    echo --------------------------------------------------------
     echo "configuracion de red: $(ip a)"
     ;;
   d|D)
+    clear
+    echo Opción elegida: D - Consultar directorio de usuario
+    echo --------------------------------------------------------
     #para comprobar si cadenas son iguales se usa =
     # variable PWD: es el directorio actual donde está el usuario
     # HOME: directorio de conexión de usuario
@@ -35,10 +50,13 @@ case "$opcion" in
     fi
     ;;
   s|S)
+    echo --------------------------------------------------------
     echo "Bye bye!!"
     ;;
   *)
-    echo "Opción incorrecta!!!!"
+    echo
+    echo "xxxxxxxx   Opción incorrecta!!!! xxxxxxxx"
+    opcion=a 
     ;;
 esac # fin del case
 done #fin del while
