@@ -7,7 +7,8 @@
 date=`date +%F-%H%M`
 # definir fichero del día en carpeta log
 log_dir=/log/folder_creator_`date +%F`.log
-echo "$(whoami) ejecutando script taller a las $date" >> $log_dir
+echo "[$date] -$(whoami) ejecutando script creacion usuarios" >> $log_dir
+echo "-----------------------------------------------------" >> $log_dir
 #echo $log_dir
 # comprobación de la carpeta shared:
 #    - saber si hay usuarios pendientes de crear
@@ -27,7 +28,7 @@ do
   else
     echo "[$date] Se crea el usuario $user..." >> $log_dir
     # se crea el usario sin contraseña y con su home con el modificador -m
-    useradd -m $user
+    /usr/sbin/useradd -m $user
     # mensaje de  bienvenida
     echo "echo Hola $user! Bienvenido" >> /home/$user/.bashrc
   fi
@@ -41,7 +42,8 @@ do
   done
   if [ $? -eq 0 ]
   then
-    rm -rf /shared/$user
+    echo "borramos /shared/$user" >> $log_dir
+    rm -f /shared/$user
   else
     echo "Hay algún problema al borrar $user" >> $log_dir
   fi
