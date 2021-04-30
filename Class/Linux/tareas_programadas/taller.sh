@@ -7,6 +7,7 @@
 date=`date +%F-%H%M`
 # definir fichero del día en carpeta log
 log_dir=/log/folder_creator_`date +%F`.log
+echo "$(whoami) ejecutando script taller a las $date" >> $log_dir
 #echo $log_dir
 # comprobación de la carpeta shared:
 #    - saber si hay usuarios pendientes de crear
@@ -35,11 +36,14 @@ do
   for dir in ${dirs[@]}
   do
     echo "[$date] Creamos el directorio $dir de $user" >> $log_dir 
-    mkdir /home/$user/$dir 
+    mkdir /home/$user/$dir >> $log_dir
+#    echo "Salida es $? " >> $log_dir 
   done
   if [ $? -eq 0 ]
   then
     rm -rf /shared/$user
+  else
+    echo "Hay algún problema al borrar $user" >> $log_dir
   fi
 done
 
